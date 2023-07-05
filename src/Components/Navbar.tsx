@@ -2,15 +2,18 @@ import {
   AppBar,
   Box,
   Button,
+  Chip,
   FormControl,
   MenuItem,
   Select,
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import WelcomeMessage from "./WelcomeMessage";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { ProgressContext } from "../contexts/ProgressContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,6 +27,11 @@ const useStyles = makeStyles((theme: Theme) =>
 const Navbar = () => {
   // style
   const classes = useStyles();
+
+  // useContext
+  const { lastTime, status } = useContext(ProgressContext);
+  const { theme } = useContext(ThemeContext);
+
   // state
   const [position, setPosition] = useState<string>("Full-stack Developer");
 
@@ -37,7 +45,7 @@ const Navbar = () => {
   const onPositionChange = (event: ChangeEvent<{ value: unknown }>) =>
     setPosition(event.target.value as string);
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color={theme}>
       <Toolbar>
         <Box
           display="flex"
@@ -52,6 +60,9 @@ const Navbar = () => {
 
           <Box textAlign="center">
             <WelcomeMessage position={position} />
+            <Chip
+              label={`Last time working on this project: ${lastTime} - Status: ${status}`}
+            />
             <Box mt={1}>
               <FormControl>
                 <Select
