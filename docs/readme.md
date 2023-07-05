@@ -10,12 +10,18 @@
 - Su dung hook: useState, useContext (Interface, Generics)
 - Gia tri default cua function la: () =>{}
 - import { v4 as uuidv4 } from "uuid";
+- Hook: useContext -> theme, movies
+- Reducer: login, favourite movies
+- TS/kieu cho event: const onUsernameChange = (event: ChangeEvent<HTMLInputElement>) => setUsername(event.target.value);
+- Gia tri mac dinh cho Promise.Func: getTopMovies: () => Promise.resolve(void 0), //void 0==undifined
 
 # Chuc nang
 
 - Dong ho realtime
 - toggle theme
--
+- Add movies
+- Authetication (Reducer)
+- Top 10 movies api from https://www.omdbapi.com/ (using Reducer/Context)
 
 # welcome
 
